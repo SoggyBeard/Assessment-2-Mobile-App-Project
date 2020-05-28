@@ -1,0 +1,1 @@
+29/05/20 created a constructor to store the data from the calendar
