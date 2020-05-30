@@ -220,7 +220,8 @@ public class activity_calendar extends AppCompatActivity {
 
     public void addEntry()
     {
-        calendarData[arraySize-1] = new data(y,m,d, faceId ,startTime, endTime, commentBox.getText().toString());
+        arrayIndex = arraySize-1;
+        calendarData[arrayIndex] = new data(y,m,d, faceId ,startTime, endTime, commentBox.getText().toString());
         arraySize = calendarData.length;
         arraySize++;
         calendarData = Arrays.copyOf(calendarData, arraySize);

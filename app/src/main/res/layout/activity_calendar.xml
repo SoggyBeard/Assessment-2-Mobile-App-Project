@@ -78,6 +78,7 @@
         android:layout_marginTop="317dp"
         android:layout_marginBottom="76dp"
         android:background="#FFFFFF"
+        android:dateTextAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -163,5 +164,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="99dp"
+        android:layout_marginBottom="12dp"
+        android:text="Comment"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/commentBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/box1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
