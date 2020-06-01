@@ -4,6 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AD00BCD4"
     tools:context=".sleep_activty">
+
+
+    <Spinner
+        android:id="@+id/monthSpinner2"
+        android:layout_width="171dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:background="#FFFFFF"
+        android:textSize="45dp"
+        app:layout_constraintStart_toEndOf="@+id/yearSpin2"
+        app:layout_constraintTop_toBottomOf="@+id/label2" />
+
+    <Spinner
+        android:id="@+id/yearSpin2"
+        android:layout_width="59dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="2dp"
+        android:background="#FFFFFF"
+        android:dropDownWidth="match_parent"
+        android:scaleType="center"
+        android:spinnerMode="dropdown"
+        android:textSize="45sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label2" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="363dp"
+        android:layout_height="590dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginRight="16dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label2"
+        app:layout_constraintVertical_bias="0.355" />
+
+    <TextView
+        android:id="@+id/label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="2dp"
+        android:text="Sleep"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/btnCalendar3"
+        android:layout_width="129dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="562dp"
+        android:layout_marginBottom="1dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.017"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/calendar1" />
+
+    <ImageButton
+        android:id="@+id/btnMood3"
+        android:layout_width="129dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="562dp"
+        android:layout_marginBottom="1dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/mood_btn" />
+
+    <ImageButton
+        android:id="@+id/btnSleep3"
+        android:layout_width="129dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="562dp"
+        android:layout_marginBottom="1dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/sleep_btn" />
+
+    <TextView
+        android:id="@+id/monthTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:text="Average Sleep this month:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthSpinner2" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="328dp"
+        android:layout_height="518dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthTotal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

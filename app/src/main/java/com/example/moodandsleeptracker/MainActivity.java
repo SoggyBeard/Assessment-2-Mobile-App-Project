@@ -32,14 +32,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     int faceVal1, faceVal2, faceVal3, faceVal4, faceVal5, faceVal6;
     boolean exists = false;
     private int arraySize = activity_calendar.arraySize;
-    int currentYear, currentMonth, yearPos, faceTotal;
+    int currentYear, currentMonth, yearPos,faceTotal;
+    int face1Total, face2Total, face3Total, face4Total, face5Total, face6Total, allTotal ;
     double per1, per2, per3, per4, per5;
     int y = 2019;
     data[] calendarData = new data[arraySize];
 
-    private ImageButton btnMood, btnCalendar;
+    private ImageButton btnSleep, btnCalendar;
     Spinner yearSpin, monthSpin;
-    TextView c1, c2, c3, c4, c5, c6, p1, p2, p3, p4, p5;
+    TextView c1, c2, c3, c4, c5, c6, p1, p2, p3, p4, p5, t1, t2, t3, t4, t5, t6, at;
     AnyChartView pieChart;
 
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnCalendar = (ImageButton) findViewById(R.id.btnCalendar);
+        btnSleep = (ImageButton) findViewById(R.id.btnSleep);
         yearSpin = (Spinner) findViewById(R.id.yearSpin);
         monthSpin = (Spinner) findViewById(R.id.monthSpinner);
         c1 = (TextView) findViewById(R.id.count1);
@@ -61,8 +63,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         p3 = (TextView) findViewById(R.id.percent3);
         p4 = (TextView) findViewById(R.id.percent4);
         p5 = (TextView) findViewById(R.id.percent5);
+        t1 = (TextView) findViewById(R.id.total1);
+        t2 = (TextView) findViewById(R.id.total2);
+        t3 = (TextView) findViewById(R.id.total3);
+        t4 = (TextView) findViewById(R.id.total4);
+        t5 = (TextView) findViewById(R.id.total5);
+        t6 = (TextView) findViewById(R.id.total6);
+        at = (TextView) findViewById(R.id.allTotal);
         pieChart = findViewById(R.id.pie);
-
+        calendarData = activity_calendar.calendarData;
 
         createSpinners();
 
@@ -73,11 +82,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+        btnSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSleep();
+            }
+        });
     }
 
     public void openCalendar()
     {
         Intent intent = new Intent(this, activity_calendar.class);
+        startActivity(intent);
+    }
+
+    public void openSleep()
+    {
+        Intent intent = new Intent(this, sleep_activty.class);
         startActivity(intent);
     }
 
@@ -132,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Log.d("boop", " " + Integer.toString(calendarData[i].getYear()) + " " + Integer.toString(calendarData[i].getMonth()) + " " + Integer.toString(calendarData[i].getDay()) + " " +
                         Integer.toString(calendarData[i].getBtnPushed()) + " " + calendarData[i].getComment());
             }
-
+            getTotals();
         }
         percentage();
     }
@@ -168,7 +189,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void createSpinners()
     {
-        calendarData = activity_calendar.calendarData;
         DateFormat dateMonth = new SimpleDateFormat("MM");
         DateFormat dateYear = new SimpleDateFormat("YYYY");
         Date date = new Date();
@@ -241,7 +261,45 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Pie pie = AnyChart.pie();
         pie.data(percent);
         pieChart.setChart(pie);
+    }
 
+    public void getTotals()
+    {
+        for(int i = 0; i < arraySize -1; i++)
+        {
+            if(calendarData[i].getBtnPushed() == 0)
+            {
+                face1Total++;
+                t1.setText(Integer.toString(face1Total));
+            }
+            if(calendarData[i].getBtnPushed() == 1)
+            {
+                face2Total++;
+                t2.setText(Integer.toString(face2Total));
+            }
+            if(calendarData[i].getBtnPushed() == 2)
+            {
+                face3Total++;
+                t3.setText(Integer.toString(face3Total));
+            }
+            if(calendarData[i].getBtnPushed() == 3)
+            {
+                face4Total++;
+                t4.setText(Integer.toString(face4Total));
+            }
+            if(calendarData[i].getBtnPushed() == 4)
+            {
+                face5Total++;
+                t5.setText(Integer.toString(face5Total));
+            }
+            if(calendarData[i].getBtnPushed() == 5)
+            {
+                face6Total++;
+                t6.setText(Integer.toString(face6Total));
+            }
+        }
+        allTotal = face1Total + face2Total + face3Total + face4Total + face5Total + face6Total;
+        at.setText( "Total: " + Integer.toString(allTotal));
     }
 
     public void createLineGraph()
@@ -253,8 +311,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         percent.add(new ValueDataEntry(0,per3));
         percent.add(new ValueDataEntry(0,per4));
         percent.add(new ValueDataEntry(0,per5));
-
-
 
     }
 
