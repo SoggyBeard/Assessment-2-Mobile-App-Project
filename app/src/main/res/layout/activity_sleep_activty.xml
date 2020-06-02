@@ -119,7 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/monthSpinner2" />
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/monthList"
         android:layout_width="328dp"
         android:layout_height="518dp"
         android:layout_marginStart="43dp"

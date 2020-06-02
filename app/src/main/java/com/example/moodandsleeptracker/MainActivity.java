@@ -1,5 +1,6 @@
 package com.example.moodandsleeptracker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -28,10 +29,12 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ArrayList<String> years = new ArrayList<String>();
     ArrayList<String> months = new ArrayList<String>();
+    private int arraySize = activity_calendar.arraySize;
+    int[] yearStore, monthStore, dayStore, btnStore, shStore, smStore, ehStore, emStore;
+    String[] comStore;
     String date;
     int faceVal1, faceVal2, faceVal3, faceVal4, faceVal5, faceVal6;
     boolean exists = false;
-    private int arraySize = activity_calendar.arraySize;
     int currentYear, currentMonth, yearPos,faceTotal;
     int face1Total, face2Total, face3Total, face4Total, face5Total, face6Total, allTotal ;
     double per1, per2, per3, per4, per5;
@@ -42,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner yearSpin, monthSpin;
     TextView c1, c2, c3, c4, c5, c6, p1, p2, p3, p4, p5, t1, t2, t3, t4, t5, t6, at;
     AnyChartView pieChart;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         at = (TextView) findViewById(R.id.allTotal);
         pieChart = findViewById(R.id.pie);
         calendarData = activity_calendar.calendarData;
+       // storeArray();
 
         createSpinners();
 
@@ -89,6 +92,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
     }
+/*
+    public void storeArray()
+    {
+        for (int i = 0; i < arraySize-1; i++)
+        {
+            yearStore[i] = calendarData[i].getYear();
+            monthStore[i] = calendarData[i].getMonth();
+            dayStore[i] = calendarData[i].getDay();
+            btnStore[i] = calendarData[i].getBtnPushed();
+            shStore[i] = calendarData[i].getStartHour();
+            smStore[i] = calendarData[i].getStartMin();
+            ehStore[i] = calendarData[i].getEndHour();
+            emStore[i] = calendarData[i].getEndMin();
+            comStore[i] = calendarData[i].getComment();
+        }
+    }*/
 
     public void openCalendar()
     {
@@ -311,11 +330,38 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         percent.add(new ValueDataEntry(0,per3));
         percent.add(new ValueDataEntry(0,per4));
         percent.add(new ValueDataEntry(0,per5));
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+/*
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putIntArray("year", yearStore);
+        outState.putIntArray("month", monthStore);
+        outState.putIntArray("day", dayStore);
+        outState.putIntArray("btn", btnStore);
+        outState.putIntArray("sh", shStore);
+        outState.putIntArray("sm", smStore);
+        outState.putIntArray("em", emStore);
+        outState.putIntArray("eh", ehStore);
+        outState.putStringArray("com", comStore);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        yearStore = savedInstanceState.getIntArray("year");
+        monthStore = savedInstanceState.getIntArray("month");
+        dayStore = savedInstanceState.getIntArray("day");
+        btnStore = savedInstanceState.getIntArray("btn");
+        shStore = savedInstanceState.getIntArray("sh");
+        smStore = savedInstanceState.getIntArray("sm");
+        ehStore = savedInstanceState.getIntArray("eh");
+        emStore = savedInstanceState.getIntArray("em");
+        comStore = savedInstanceState.getStringArray("com");
+    }*/
 }

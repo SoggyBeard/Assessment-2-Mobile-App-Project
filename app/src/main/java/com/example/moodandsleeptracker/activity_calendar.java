@@ -184,6 +184,7 @@ public class activity_calendar extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         timeLabel(hourOfDay, minutes);
+                        Log.d("boop", "hit");
                         chooseStartTime.setText(timeDisplay);
                         startHour = hourOfDay;
                         startMin = minutes;

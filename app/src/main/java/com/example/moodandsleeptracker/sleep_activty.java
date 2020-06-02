@@ -16,15 +16,17 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class sleep_activty extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ArrayList<String> years = new ArrayList<String>();
     ArrayList<String> months = new ArrayList<String>();
-    String[] sleepData= new String[34];
+
     private int arraySize = activity_calendar.arraySize;
     int sumH=0, sumM=0;
-    data[] calendarData = new data[arraySize];
+    private data[] calendarData = new data[arraySize];
+    String[] sleepData= new String[1];
     int currentYear, currentMonth, yearPos, sleepHour, sleepMin;
     int y = 2019;
     Spinner yearSpin, monthSpin;
@@ -40,8 +42,7 @@ public class sleep_activty extends AppCompatActivity implements AdapterView.OnIt
         yearSpin = (Spinner) findViewById(R.id.yearSpin2);
         monthSpin = (Spinner) findViewById(R.id.monthSpinner2);
         monthTotal = (TextView) findViewById(R.id.monthTotal);
-        listView = (ListView) findViewById(R.id.list);
-
+        listView = (ListView) findViewById(R.id.monthList);
         createSpinners();
 
         btnMood.setOnClickListener(new View.OnClickListener() {
@@ -117,37 +118,41 @@ public class sleep_activty extends AppCompatActivity implements AdapterView.OnIt
         int m = monthSpin.getSelectedItemPosition()+1;
 
         if(arraySize > 0) {
-            Log.d("boop", "main " + m);
-            for (int i = 0; i < arraySize-1; i++) {
+            Log.d("boop", "main " + arraySize);
+            Log.d("boop", Integer.toString( calendarData.length));
+            for (int i = 0; i < arraySize -1; i++) {
                 if(y == calendarData[i].getYear() && m == calendarData[i].getMonth())
                 {
+                    sleepData = Arrays.copyOf(sleepData, i+1);
+
                     sleepHour = calendarData[i].getEndHour() - calendarData[i].getStartHour();
                     sleepMin = calendarData[i].getEndMin() - calendarData[i].getStartMin();
                     if(sleepMin < 0)
                     {
                         sleepHour--;
-                        sleepMin = sleepMin = 60;
+                        sleepMin = 60 + sleepMin;
                     }
                     if(sleepHour < 0)
                     {
                         sleepHour = sleepHour * -1;
-                        sleepData[i] = "1 Day " + Integer.toString(sleepHour) + " Hours " + Integer.toString(sleepMin) + " Minutes";
+                        sleepData[i] = "Day: " + calendarData[i].getDay() + ") 1 Day " + sleepHour + " Hours " + sleepMin + " Minutes";
                     }else {
-                        sleepData[i] = Integer.toString(sleepHour) + " Hours " + Integer.toString(sleepMin) + " Minutes";
+                        sleepData[i] = "Day: " + calendarData[i].getDay() + ") " + sleepHour + " Hours " + sleepMin + " Minutes";
                     }
                     if(calendarData[i].getEndHour() == calendarData[i].getStartHour() && calendarData[i].getEndMin() == calendarData[i].getStartMin() || calendarData[i].getEndHour() == 0
                             || calendarData[i].getStartHour() == 0 || calendarData[i].getStartMin() == 0 ||calendarData[i].getStartMin() == 0)
                     {
-                        sleepData[i] = "No sleep recorded!";
+                        sleepData[i] = "Day: " + calendarData[i].getDay() + ") No sleep recorded!";
                     }
                     sumH += sleepHour;
                     sumM += sleepMin;
-                    Log.d("boop", sleepData[i]);
+                    // Log.d("boop", sleepData[i]);
                 }
             }
-            monthTotal.setText("Average Sleep this month: " + Integer.toString(sumH / arraySize) + ":" + Integer.toString(sumM / arraySize));
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sleepData);
-            listView.setAdapter(adapter);
+
+            monthTotal.setText("Average Sleep this month: " + sumH / arraySize + ":" + sumM / arraySize);
+            ArrayAdapter<String> adapterList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sleepData);
+            listView.setAdapter(adapterList);
         }
     }
     @Override
